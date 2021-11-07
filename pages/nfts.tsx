@@ -52,7 +52,7 @@ const useAccount = () => {
   return { accountInfo, nfts };
 };
 
-export default () => {
+const NftPage = () => {
   const { accountInfo, nfts } = useAccount();
 
   const handleNftSelected = (selected: NftMetadata) => {
@@ -72,3 +72,5 @@ export default () => {
     </div>
   );
 };
+
+export default NftPage;
