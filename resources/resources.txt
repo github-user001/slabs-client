@@ -1,0 +1,6 @@
+payments
+
+https://shopify.dev/apps/channels/complete-payment
+
+programatically checkout user (you need to add a payment and that requires some setup and shopify approval)
+https://community.shopify.com/c/shopify-apis-and-sdks/how-to-complete-checkout-using-rest-api/m-p/503523/highlight/true#M32660
