@@ -1,3 +1,5 @@
+import { Input } from "@chakra-ui/input";
+import { Box, Text } from "@chakra-ui/layout";
 import * as web3 from "@solana/web3.js";
 import Router from "next/router";
 import React, { useEffect, useState } from "react";
@@ -17,7 +19,7 @@ var connection = new web3.Connection(
   "confirmed"
 );
 
-const useAccount = () => {
+const useAccount = (pubkey: web3.PublicKey) => {
   const [accountInfo, setAccountInfo] = useState<
     web3.AccountInfo<Buffer | null> | undefined
   >();
@@ -28,7 +30,7 @@ const useAccount = () => {
     // get account info
     // account data is bytecode that needs to be deserialized
     // serialization and deserialization is program specic
-    let account = await connection.getAccountInfo(userPublicKey);
+    let account = await connection.getAccountInfo(pubkey);
 
     // @ts-ignore
     setAccountInfo(account);
@@ -38,7 +40,7 @@ const useAccount = () => {
     // get account info
     // account data is bytecode that needs to be deserialized
     // serialization and deserialization is program specic
-    let nfts = await getUserNfts(userPublicKey);
+    let nfts = await getUserNfts(pubkey);
 
     // @ts-ignore
     setNfts(nfts);
@@ -47,13 +49,14 @@ const useAccount = () => {
   useEffect(() => {
     updateAccountInfo();
     updateUserNfts();
-  }, []);
+  }, [pubkey]);
 
   return { accountInfo, nfts };
 };
 
 const NftPage = () => {
-  const { accountInfo, nfts } = useAccount();
+  const [pubkey, setpubkey] = useState(userPublicKey);
+  const { nfts } = useAccount(pubkey);
 
   const handleNftSelected = (selected: NftMetadata) => {
     Router.push({
@@ -62,14 +65,25 @@ const NftPage = () => {
     });
   };
 
-  return (
-    <div>
-      <div>NFTs for user {userPublicKey.toBase58()}</div>
+  const handlePubkeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const newpubkey = new web3.PublicKey(e.target.value);
+      setpubkey(newpubkey);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-      <div>{JSON.stringify(accountInfo, null, 4)}</div>
+  return (
+    <Box p={4}>
+      <Text fontSize="lg" fontFamily="bold" pb={2}>
+        NFTs for user {pubkey.toBase58()}
+      </Text>
+
+      <Input placeholder="Copy pubkey here" onChange={handlePubkeyChange} />
 
       <NftList nftMetadata={nfts} onNftSelected={handleNftSelected} />
-    </div>
+    </Box>
   );
 };
 
