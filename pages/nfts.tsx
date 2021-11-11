@@ -1,16 +1,10 @@
-import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
 import * as web3 from "@solana/web3.js";
 import Router from "next/router";
 import React, { useEffect, useState } from "react";
 import { getUserNfts, NftMetadata } from "../nfts/helpers";
 import { NftList } from "../nfts/NftList";
-
-const lotsOfNfts = "ApzmtVUivhdFDshKZi5XGFLZWEt9moCT65Wz9L9SfLbc";
-const me = "7d5d51JoHpzkPyTxZxrKHWkQwRCw6VdStHJ8PdoM3kij";
-
-const userPublicKey = new web3.PublicKey(lotsOfNfts);
-
+import { useWallet } from "./_app";
 // Connect to cluster
 var connection = new web3.Connection(
   // "https://psytrbhymqlkfrhudd.dev.genesysgo.net:8899/",
@@ -55,7 +49,7 @@ const useAccount = (pubkey: web3.PublicKey) => {
 };
 
 const NftPage = () => {
-  const [pubkey, setpubkey] = useState(userPublicKey);
+  const { pubkey } = useWallet();
   const { nfts } = useAccount(pubkey);
 
   const handleNftSelected = (selected: NftMetadata) => {
@@ -65,22 +59,11 @@ const NftPage = () => {
     });
   };
 
-  const handlePubkeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    try {
-      const newpubkey = new web3.PublicKey(e.target.value);
-      setpubkey(newpubkey);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   return (
     <Box p={4}>
       <Text fontSize="lg" fontFamily="bold" pb={2}>
         NFTs for user {pubkey.toBase58()}
       </Text>
-
-      <Input placeholder="Copy pubkey here" onChange={handlePubkeyChange} />
 
       <NftList nftMetadata={nfts} onNftSelected={handleNftSelected} />
     </Box>
