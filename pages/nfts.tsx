@@ -4,7 +4,7 @@ import Router from "next/router";
 import React, { useEffect, useState } from "react";
 import { getUserNfts, NftMetadata } from "../nfts/helpers";
 import { NftList } from "../nfts/NftList";
-import { useWallet } from "./_app";
+import { useDumbWallet } from "./_app";
 // Connect to cluster
 var connection = new web3.Connection(
   // "https://psytrbhymqlkfrhudd.dev.genesysgo.net:8899/",
@@ -49,7 +49,9 @@ const useAccount = (pubkey: web3.PublicKey) => {
 };
 
 const NftPage = () => {
-  const { pubkey } = useWallet();
+  const { pubkey } = useDumbWallet();
+  console.log({ pubkey: pubkey.toBase58() });
+
   const { nfts } = useAccount(pubkey);
 
   const handleNftSelected = (selected: NftMetadata) => {

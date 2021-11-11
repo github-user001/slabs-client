@@ -1,9 +1,16 @@
 import { Button } from "@chakra-ui/button";
 import { useColorMode } from "@chakra-ui/color-mode";
-import { Center, Text } from "@chakra-ui/layout";
-import { Input } from "@chakra-ui/react";
+import { Center, Flex, Text } from "@chakra-ui/layout";
+import {
+  WalletDisconnectButton,
+  WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
 import React from "react";
-import { useWallet } from "../pages/_app";
+import {
+  lotsOfNfts,
+  michaelPubkey,
+  useDumbWallet as useDumbWallet,
+} from "../pages/_app";
 
 const ToggleColorModeButton = () => {
   const { toggleColorMode } = useColorMode();
@@ -16,14 +23,35 @@ const ToggleColorModeButton = () => {
 };
 
 export const DesignPendingBanner = () => {
-  const { handlePubkeyChange, pubkey } = useWallet();
+  const { handlePubkeyChange, pubkey } = useDumbWallet();
   return (
     <Center align="center" justify="center" bg="red.500" d="vertical">
       <Text fontSize="3xl">DESIGN PENDING...duh</Text>
       <ToggleColorModeButton />
 
-      <Input placeholder="Copy pubkey here" onChange={handlePubkeyChange} />
+      <Flex flexDir="column">
+        <Button
+          m={2}
+          onClick={() => {
+            handlePubkeyChange(lotsOfNfts);
+          }}
+        >
+          Show NFTs for pubkey: {lotsOfNfts} (lots of NFTs)
+        </Button>
+        <Button
+          m={2}
+          onClick={() => {
+            handlePubkeyChange(michaelPubkey);
+          }}
+        >
+          Show NFTs for pubkey: {michaelPubkey} (just one)
+        </Button>
+      </Flex>
+
       <Text fontSize="xl">My Pubkey: {pubkey.toBase58()}</Text>
+
+      <WalletMultiButton />
+      <WalletDisconnectButton />
     </Center>
   );
 };
