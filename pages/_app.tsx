@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Flex } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import * as web3 from "@solana/web3.js";
@@ -12,13 +12,12 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { DesignPendingBanner } from "../components/DesignPending";
+import { Banner } from "../components/Banner";
 import "../styles/globals.css";
 import theme from "../theming/theme";
 
 export const lotsOfNfts = "ApzmtVUivhdFDshKZi5XGFLZWEt9moCT65Wz9L9SfLbc";
 export const michaelPubkey = "7d5d51JoHpzkPyTxZxrKHWkQwRCw6VdStHJ8PdoM3kij";
-
 // Use require instead of import, and order matters
 require("../styles/globals.css");
 require("@solana/wallet-adapter-react-ui/styles.css");
@@ -75,10 +74,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <WalletConnectionProvider>
         <WalletModalProvider>
           <WalletProvider>
-            <div>
-              <DesignPendingBanner />
+            <Flex
+              bgGradient="linear(to-b, gradient.top, gradient.bottom)"
+              minH="100vh"
+              d="vertical"
+            >
+              <Banner />
               <Component {...pageProps} />
-            </div>
+            </Flex>
           </WalletProvider>
         </WalletModalProvider>
       </WalletConnectionProvider>
