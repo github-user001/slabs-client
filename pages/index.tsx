@@ -1,11 +1,11 @@
 import { Button } from "@chakra-ui/button";
-import { Flex, Text } from "@chakra-ui/layout";
+import { Flex, Link, Text } from "@chakra-ui/layout";
 import { NextPage } from "next";
 import Head from "next/head";
 
 const Tagline = () => {
   return (
-    <Flex d="vertical" bg="red" pos="absolute" right="0" bottom="0" p={6}>
+    <Flex d="vertical" pos="absolute" right="0" bottom="0" p={6}>
       <Text fontSize="6xl" lineHeight={1}>
         your nft
         <br />
@@ -20,9 +20,11 @@ const Tagline = () => {
         <br />
         nfts in your wallet
       </Text>
-      <Button w="sm" bg="button" my={10}>
-        lfg wgmi
-      </Button>
+      <Link href="/nfts">
+        <Button w="sm" bg="button" my={10}>
+          lfg wgmi
+        </Button>
+      </Link>
     </Flex>
   );
 };

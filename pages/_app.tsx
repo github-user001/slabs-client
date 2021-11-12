@@ -1,4 +1,4 @@
-import { ChakraProvider, Flex } from "@chakra-ui/react";
+import { Center, ChakraProvider, Flex, Text } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import * as web3 from "@solana/web3.js";
@@ -79,6 +79,19 @@ function MyApp({ Component, pageProps }: AppProps) {
               minH="100vh"
               d="vertical"
             >
+              <Center
+                pos="absolute"
+                h={"80%"}
+                w={"80%"}
+                bg="pink"
+                left={0}
+                bottom={0}
+                p={32}
+              >
+                <Text color="black" fontSize="5xl">
+                  Cool ass 3d monkey down the rabbit hole goes here
+                </Text>
+              </Center>
               <Banner />
               <Component {...pageProps} />
             </Flex>
