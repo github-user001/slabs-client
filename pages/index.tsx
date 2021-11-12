@@ -1,6 +1,31 @@
-import { Flex } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
+import { Flex, Text } from "@chakra-ui/layout";
 import { NextPage } from "next";
 import Head from "next/head";
+
+const Tagline = () => {
+  return (
+    <Flex d="vertical" bg="red" pos="absolute" right="0" bottom="0" p={6}>
+      <Text fontSize="6xl" lineHeight={1}>
+        your nft
+        <br />
+        a new
+        <br />
+        <Text fontFamily="mono">dimension</Text>
+      </Text>
+      <Text mt={2}>
+        verify your ownership and
+        <br />
+        create physical prints of the
+        <br />
+        nfts in your wallet
+      </Text>
+      <Button w="sm" bg="button" my={10}>
+        lfg wgmi
+      </Button>
+    </Flex>
+  );
+};
 
 const Index: NextPage = () => {
   return (
@@ -11,9 +36,7 @@ const Index: NextPage = () => {
         {/* TODO replace with slab favicon */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Flex h="100%" bg="blue">
-        Hi there everyone
-      </Flex>
+      <Tagline />
     </div>
   );
 };
