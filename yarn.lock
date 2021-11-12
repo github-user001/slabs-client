@@ -2397,6 +2397,11 @@
   dependencies:
     glob "7.1.7"
 
+"@next/plugin-storybook@12.0.3":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@next/plugin-storybook/-/plugin-storybook-12.0.3.tgz#c06469fe9695d132f5a5857db8811bf665d1600c"
+  integrity sha512-KEGhFie5i34aCO7vrn4AbxsMy1TZ0P5vm+4lKLon2oEYch1jFvnBLNYhMstx0nlHb29s2clNGWOgHebQr/XcQQ==
+
 "@next/polyfill-module@12.0.2":
   version "12.0.2"
   resolved "https://registry.yarnpkg.com/@next/polyfill-module/-/polyfill-module-12.0.2.tgz#1b329fcc8b54092ea936e0aaad259215fd76753f"

@@ -1,4 +1,4 @@
-import { Center, ChakraProvider, Flex, Text } from "@chakra-ui/react";
+import { Center, Flex, Text } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import * as web3 from "@solana/web3.js";
@@ -14,7 +14,7 @@ import React, {
 } from "react";
 import { Banner } from "../components/Banner";
 import "../styles/globals.css";
-import theme from "../theming/theme";
+import ThemeProvider from "../theming/theme";
 
 export const lotsOfNfts = "ApzmtVUivhdFDshKZi5XGFLZWEt9moCT65Wz9L9SfLbc";
 export const michaelPubkey = "7d5d51JoHpzkPyTxZxrKHWkQwRCw6VdStHJ8PdoM3kij";
@@ -70,7 +70,7 @@ const WalletProvider: FC = ({ children }) => {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
+    <ThemeProvider>
       <WalletConnectionProvider>
         <WalletModalProvider>
           <WalletProvider>
@@ -98,7 +98,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </WalletProvider>
         </WalletModalProvider>
       </WalletConnectionProvider>
-    </ChakraProvider>
+    </ThemeProvider>
   );
 }
 

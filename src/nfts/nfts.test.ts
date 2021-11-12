@@ -1,6 +1,6 @@
 import { PublicKey } from "@solana/web3.js";
-import { getUserNfts } from "../nfts/helpers";
 import { devnetWaifu0 } from "./fixtures";
+import { getUserNfts } from "./helpers";
 
 const userPublicKey = new PublicKey(
   "7d5d51JoHpzkPyTxZxrKHWkQwRCw6VdStHJ8PdoM3kij"

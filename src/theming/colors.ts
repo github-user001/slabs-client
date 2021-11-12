@@ -9,4 +9,5 @@ export const colors = {
   connectWallet: { button: white, text: black },
   glow: limeGreen,
   gradient: { top: black, bottom: purple },
+  borderSelected: limeGreen,
 } as const;

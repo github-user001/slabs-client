@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/layout";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import React from "react";
-import { colors } from "../styles/colors";
+import { colors } from "../theming/colors";
 
 const Logo = () => {
   return <Text fontSize="3xl">solslabs</Text>;

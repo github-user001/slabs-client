@@ -27,6 +27,6 @@ module.exports = withTM({
   reactStrictMode: true,
   webpack5: true,
   images: {
-    domains: ["cdn.shopify.com", "www.arweave.net"],
+    domains: ["cdn.shopify.com", "www.arweave.net", "i.imgur.com"],
   },
 });
