@@ -2,7 +2,7 @@ import { ChakraProvider, extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { FC } from "react";
 import { colors } from "./colors";
 
-const config: ThemeConfig = {
+export const config: ThemeConfig = {
   initialColorMode: "dark",
   useSystemColorMode: false,
 };

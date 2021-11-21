@@ -1,7 +1,9 @@
 import { Button } from "@chakra-ui/button";
-import { Flex, Link, Text } from "@chakra-ui/layout";
+import { Box, Flex, Link, Text } from "@chakra-ui/layout";
+import { Img } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
+import React from "react";
 
 const Tagline = () => {
   return (
@@ -38,6 +40,42 @@ const Index: NextPage = () => {
         {/* TODO replace with slab favicon */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Box
+        background="red"
+        pos="absolute"
+        h={"80%"}
+        w={"80%"}
+        left={0}
+        bottom={0}
+        p={32}
+      >
+        {/* <Img
+          src="/images/plane.png"
+          position="absolute"
+          width={2600}
+          height={1584}
+          left={-304}
+          top={-45}
+        /> */}
+        <Img
+          style={{ rotate: "-11deg" }}
+          src="/images/slab.png"
+          position="absolute"
+        />
+
+        <Img
+          style={{ rotate: "-11deg" }}
+          src="/images/trippy.gif"
+          position="absolute"
+          height={220}
+          width={220}
+          left={214}
+          top={360}
+          borderRadius={12}
+          // right={1}
+        />
+      </Box>
+
       <Tagline />
     </div>
   );
