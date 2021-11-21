@@ -1,4 +1,4 @@
-import { Center, Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import * as web3 from "@solana/web3.js";
@@ -13,13 +13,13 @@ import React, {
   useState,
 } from "react";
 import { Banner } from "../components/Banner";
-import "../styles/globals.css";
+// import "../styles/globals.css";
 import ThemeProvider from "../theming/theme";
 
 export const lotsOfNfts = "ApzmtVUivhdFDshKZi5XGFLZWEt9moCT65Wz9L9SfLbc";
 export const michaelPubkey = "7d5d51JoHpzkPyTxZxrKHWkQwRCw6VdStHJ8PdoM3kij";
 // Use require instead of import, and order matters
-require("../styles/globals.css");
+// require("../styles/globals.css");
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const WalletConnectionProvider = dynamic<{ children: ReactNode }>(
@@ -79,19 +79,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               minH="100vh"
               d="vertical"
             >
-              <Center
-                pos="absolute"
-                h={"80%"}
-                w={"80%"}
-                bg="pink"
-                left={0}
-                bottom={0}
-                p={32}
-              >
-                <Text color="black" fontSize="5xl">
-                  Cool ass 3d monkey down the rabbit hole goes here
-                </Text>
-              </Center>
               <Banner />
               <Component {...pageProps} />
             </Flex>
