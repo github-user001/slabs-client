@@ -1,9 +1,9 @@
 import { Button } from "@chakra-ui/button";
+import { Img } from "@chakra-ui/image";
 import { Box, Flex, Link, Text } from "@chakra-ui/layout";
-import { Img } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 
 const Tagline = () => {
   return (
@@ -31,6 +31,62 @@ const Tagline = () => {
   );
 };
 
+const Slab = () => {
+  const [left, setLeft] = useState(0);
+  const [top, setTop] = useState(0);
+
+  const mid = "#b9bbbb";
+  const dark = "#737575";
+  const light = "#c5c7c6";
+  return (
+    <Box
+      style={{ rotate: "-11deg" }}
+      bgImage="url('/images/slab.png')"
+      height={500}
+      width={350}
+    >
+      {/* <Button onClick={() => setLeft(left + 1)}>Left {left}</Button> */}
+      <Button onClick={() => setTop(top + 1)}>Top {top}</Button>
+      {/* <Img src="/images/slab.png" position="absolute" /> */}
+
+      {/* <Box
+        height={212}
+        width={212}
+        background="pink"
+        position="absolute"
+        // left={left}
+        // top={top}
+        left={74}
+        top={234}
+      /> */}
+
+      <Box
+        width={210}
+        height={84}
+        position="absolute"
+        left={74}
+        top={8}
+        // background="silver"
+        bgGradient={[
+          `linear(to-r, ${mid} 0%, ${dark} 88%, ${light})`,
+          // "linear(to-t, blue.200, teal.500)",
+          // "linear(to-b, orange.100, purple.300)",
+        ]}
+      />
+
+      <Img
+        src="/images/trippy.gif"
+        position="absolute"
+        height={212}
+        width={212}
+        left={74}
+        top={234}
+        borderRadius={12}
+      />
+    </Box>
+  );
+};
+
 const Index: NextPage = () => {
   return (
     <div>
@@ -49,6 +105,7 @@ const Index: NextPage = () => {
         bottom={0}
         p={32}
       >
+        <Slab />
         {/* <Img
           src="/images/plane.png"
           position="absolute"
@@ -57,23 +114,6 @@ const Index: NextPage = () => {
           left={-304}
           top={-45}
         /> */}
-        <Img
-          style={{ rotate: "-11deg" }}
-          src="/images/slab.png"
-          position="absolute"
-        />
-
-        <Img
-          style={{ rotate: "-11deg" }}
-          src="/images/trippy.gif"
-          position="absolute"
-          height={220}
-          width={220}
-          left={214}
-          top={360}
-          borderRadius={12}
-          // right={1}
-        />
       </Box>
 
       <Tagline />
