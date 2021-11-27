@@ -1,3 +1,4 @@
+import { CheckCircleIcon } from "@chakra-ui/icons";
 import { Box, Flex } from "@chakra-ui/layout";
 import { Image, Text } from "@chakra-ui/react";
 import React from "react";
@@ -43,8 +44,22 @@ export const nftFixture: NftListItemProps = {
 };
 
 const CheckMark = () => {
+  const size = 33;
+  const borderRadius = size / 2;
+  const position = size / -2;
+
   return (
-    <Box bg="red" h={25} w={25} right={-12.5} top={-12.5} position="absolute" />
+    <CheckCircleIcon
+      bg="black"
+      color={colors.borderSelected}
+      h={size}
+      w={size}
+      right={position}
+      top={position}
+      borderRadius={borderRadius}
+      border="2px solid black"
+      position="absolute"
+    />
   );
 };
 
