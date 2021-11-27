@@ -2,6 +2,8 @@ import { Box } from "@chakra-ui/layout";
 import * as web3 from "@solana/web3.js";
 import Router from "next/router";
 import React, { useEffect, useState } from "react";
+import { SlabOptionsList } from "../components/SlabOptionsList";
+import { SlabPreview } from "../components/SlabPreview";
 import { getUserNfts, NftMetadata } from "../nfts/helpers";
 import { NftList } from "../nfts/NftList";
 import { useDumbWallet } from "./_app";
@@ -87,6 +89,10 @@ const NftPage = () => {
           setUri(nft.metadataUri);
         }}
       />
+
+      <SlabOptionsList />
+      <Box h={100} />
+      <SlabPreview image={"/images/slab.png"} />
     </Box>
   );
 };
