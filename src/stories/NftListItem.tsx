@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/layout";
 import { Image, Text } from "@chakra-ui/react";
 import React from "react";
+import { NftMetadata } from "../nfts/helpers";
 import { colors } from "../theming/colors";
 
 interface NftListItemProps {
@@ -19,18 +20,25 @@ interface NftListItemProps {
   /**
    * Optional click handler
    */
-  onClick: (tokenAddress: string) => void;
+  onClick: (nft: NftMetadata) => void;
   /**
    * Whether or not this item is actively selected
    */
   selected?: boolean;
+  /**
+   * HACK
+   *
+   * all the nft data remove later
+   */
+  nft: NftMetadata;
 }
 
+// @ts-ignore
 export const nftFixture: NftListItemProps = {
   title: "WARPED_01",
   tokenAddress: "0X44B2...9765",
   image: "https://i.imgur.com/wlqW48C.png",
-  onClick: function (tokenAddress: string): void {},
+  onClick: function (nft: NftMetadata): void {},
   selected: false,
 };
 
@@ -45,6 +53,8 @@ export const NftListItem = ({
   tokenAddress,
   title,
   selected,
+  onClick,
+  nft,
 }: NftListItemProps = nftFixture) => {
   const borderProps = selected && {
     borderColor: colors.borderSelected,
@@ -57,6 +67,7 @@ export const NftListItem = ({
       shadow="2xl"
       dropShadow="2xl"
       position="relative"
+      onClick={() => onClick(nft)}
       {...borderProps}
     >
       {selected && <CheckMark />}

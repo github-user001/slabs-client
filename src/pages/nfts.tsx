@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import * as web3 from "@solana/web3.js";
 import Router from "next/router";
 import React, { useEffect, useState } from "react";
@@ -49,25 +49,39 @@ const useAccount = (pubkey: web3.PublicKey) => {
 };
 
 const NftPage = () => {
+  const [selectedNftUris, setUris] = useState<string[]>([]);
   const { pubkey } = useDumbWallet();
-  console.log({ pubkey: pubkey.toBase58() });
 
   const { nfts } = useAccount(pubkey);
 
-  const handleNftSelected = (selected: NftMetadata) => {
+  const navigateToOptions = () => {
     Router.push({
       pathname: "/options",
-      query: { nftMetadata: selected.metadataUri },
+      query: { nftMetadata: selectedNftUris[0] },
     });
+  };
+
+  const handleNftSelected = (selected: NftMetadata) => {
+    const uriIndex = selectedNftUris.findIndex(
+      (uri) => uri === selected.metadataUri
+    );
+    const wasAlreadySelected = uriIndex !== -1;
+    if (wasAlreadySelected) {
+      setUris(
+        selectedNftUris.filter((uri: string) => uri !== selected.metadataUri)
+      );
+    } else {
+      setUris([...selectedNftUris, selected.metadataUri]);
+    }
   };
 
   return (
     <Box p={4}>
-      <Text fontSize="lg" fontFamily="bold" pb={2}>
-        NFTs for user {pubkey.toBase58()}
-      </Text>
-
-      <NftList nftMetadata={nfts} onNftSelected={handleNftSelected} />
+      <NftList
+        nftMetadata={nfts}
+        onNftSelected={handleNftSelected}
+        selectedUris={selectedNftUris}
+      />
     </Box>
   );
 };
