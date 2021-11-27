@@ -1,4 +1,5 @@
-import { Box } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
+import { Box, Flex } from "@chakra-ui/layout";
 import * as web3 from "@solana/web3.js";
 import Router from "next/router";
 import React, { useEffect, useState } from "react";
@@ -6,6 +7,7 @@ import { SlabOptionsList } from "../components/SlabOptionsList";
 import { SlabPreview } from "../components/SlabPreview";
 import { getUserNfts, NftMetadata } from "../nfts/helpers";
 import { NftList } from "../nfts/NftList";
+import { colors } from "../theming/colors";
 import { useDumbWallet } from "./_app";
 // Connect to cluster
 var connection = new web3.Connection(
@@ -79,20 +81,38 @@ const NftPage = () => {
   // };
 
   return (
-    <Box p={4}>
-      <NftList
-        nftMetadata={nfts}
-        // onNftSelected={ALLOWMULTIPLE___handleNftSelected}
-        // selectedUris={selectedNftUris}
-        selectedUri={selectedNftUri}
-        onNftSelected={(nft) => {
-          setUri(nft.metadataUri);
-        }}
-      />
+    <Box p={4} flex={1} background="blue">
+      <Box background="green">
+        <NftList
+          nftMetadata={nfts}
+          // onNftSelected={ALLOWMULTIPLE___handleNftSelected}
+          // selectedUris={selectedNftUris}
+          selectedUri={selectedNftUri}
+          onNftSelected={(nft) => {
+            setUri(nft.metadataUri);
+          }}
+        />
+      </Box>
 
-      <SlabOptionsList />
+      <SlabPreview image={"/images/trippy.gif"} />
       <Box h={100} />
-      <SlabPreview image={"/images/slab.png"} />
+      <Flex justifyContent="center">
+        <SlabOptionsList selectedOptionName={undefined} />
+      </Flex>
+
+      <Flex
+        style={{ position: "absolute", bottom: 0, width: "100%" }}
+        background="orange"
+        justifyContent="flex-end"
+      >
+        <Button
+          background={colors.borderSelected}
+          color="black"
+          onClick={navigateToOptions}
+        >
+          View Proof {">"}
+        </Button>
+      </Flex>
     </Box>
   );
 };
