@@ -49,7 +49,8 @@ const useAccount = (pubkey: web3.PublicKey) => {
 };
 
 const NftPage = () => {
-  const [selectedNftUris, setUris] = useState<string[]>([]);
+  // const [selectedNftUris, setUris] = useState<string[]>([]);
+  const [selectedNftUri, setUri] = useState<string | undefined>();
   const { pubkey } = useDumbWallet();
 
   const { nfts } = useAccount(pubkey);
@@ -57,30 +58,34 @@ const NftPage = () => {
   const navigateToOptions = () => {
     Router.push({
       pathname: "/options",
-      query: { nftMetadata: selectedNftUris[0] },
+      query: { nftMetadata: selectedNftUri },
     });
   };
 
-  const handleNftSelected = (selected: NftMetadata) => {
-    const uriIndex = selectedNftUris.findIndex(
-      (uri) => uri === selected.metadataUri
-    );
-    const wasAlreadySelected = uriIndex !== -1;
-    if (wasAlreadySelected) {
-      setUris(
-        selectedNftUris.filter((uri: string) => uri !== selected.metadataUri)
-      );
-    } else {
-      setUris([...selectedNftUris, selected.metadataUri]);
-    }
-  };
+  // const ALLOWMULTIPLE___handleNftSelected = (selected: NftMetadata) => {
+  //   const uriIndex = selectedNftUris.findIndex(
+  //     (uri) => uri === selected.metadataUri
+  //   );
+  //   const wasAlreadySelected = uriIndex !== -1;
+  //   if (wasAlreadySelected) {
+  //     setUris(
+  //       selectedNftUris.filter((uri: string) => uri !== selected.metadataUri)
+  //     );
+  //   } else {
+  //     setUris([...selectedNftUris, selected.metadataUri]);
+  //   }
+  // };
 
   return (
     <Box p={4}>
       <NftList
         nftMetadata={nfts}
-        onNftSelected={handleNftSelected}
-        selectedUris={selectedNftUris}
+        // onNftSelected={ALLOWMULTIPLE___handleNftSelected}
+        // selectedUris={selectedNftUris}
+        selectedUri={selectedNftUri}
+        onNftSelected={(nft) => {
+          setUri(nft.metadataUri);
+        }}
       />
     </Box>
   );

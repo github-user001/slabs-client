@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 import { Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { NftMetadata } from "../nfts/helpers";
@@ -61,10 +61,14 @@ export const NftListItem = ({
     borderWidth: 4,
   };
   return (
-    <Box
+    <Flex
+      width={117}
+      height={158}
+      marginBottom={"22px"}
       bg="black"
       borderRadius={12}
       shadow="2xl"
+      direction={"column"}
       dropShadow="2xl"
       position="relative"
       onClick={() => onClick(nft)}
@@ -81,14 +85,14 @@ export const NftListItem = ({
         borderTopRightRadius={12}
         borderBottomRightRadius={24}
       />
-      <Box p={8}>
-        <Text fontSize="xl" fontFamily="bold" color="white">
+      <Box p={"6px"}>
+        <Text fontSize={14.4} fontFamily="bold" color="white">
           {title}
         </Text>
-        <Text fontFamily="monospace" color="white">
+        <Text fontSize={8.5} fontFamily="monospace" color="white">
           {tokenAddress}
         </Text>
       </Box>
-    </Box>
+    </Flex>
   );
 };
