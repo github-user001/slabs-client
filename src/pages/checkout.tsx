@@ -22,10 +22,12 @@ const CheckoutPage = () => {
   const metadata = useNftMetadata(metadataUri);
 
   const probablyLoading = metadata === undefined;
+  const error = metadataUri === undefined;
 
   return (
     <div>
       {probablyLoading && <div>Loading......</div>}
+      {error && <div>No Metadata URI received, can't fetch metadata</div>}
 
       {!probablyLoading && (
         <SlabPreview top={"230px"} left={"200px"} image={metadata.image} />

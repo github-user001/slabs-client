@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/layout";
+import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Img } from "@chakra-ui/react";
 import React from "react";
 
@@ -28,7 +28,7 @@ export const SlabPreview = ({ image, top, left }: SlabPreviewProps) => {
         zIndex={1}
       />
 
-      <Box
+      <Flex
         zIndex={1}
         width={210}
         height={"64px"}
@@ -36,7 +36,11 @@ export const SlabPreview = ({ image, top, left }: SlabPreviewProps) => {
         top={"-18px"}
         position="relative"
         bgGradient={[`linear(to-r, ${mid} 0%, ${dark} 88%, ${light})`]}
-      />
+        alignItems="flex-end"
+        padding={2}
+      >
+        <Text>solslabs</Text>
+      </Flex>
 
       <Img
         src={image}
