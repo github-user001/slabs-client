@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { Flex, Link, Text } from "@chakra-ui/layout";
+import { Flex, Link, Text, VStack } from "@chakra-ui/layout";
 import { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
@@ -22,11 +22,37 @@ const Tagline = () => {
         <br />
         nfts in your wallet
       </Text>
-      <Link href="/nfts">
-        <Button w="sm" bg="button" my={10}>
-          lfg wgmi
-        </Button>
-      </Link>
+
+      <VStack>
+        {/* 
+        
+        Reounded rectangle in vertial list
+        my orders
+        one color if they've been doxxed (green / blue)
+        // order init date
+        nft images that are in order
+
+        [ onclick ]
+          take them to shopify to dox themselves
+          show preview of card
+          if not doxxed, button underneath that says "Enter shipping info"
+          if already doxxed, provide similar button to view the status of their order
+            - probably display inline but hack to kick them off
+
+        
+        */}
+        <Link href="/orders">
+          <Button w="sm" bg="button" my={10}>
+            View my orders
+          </Button>
+        </Link>
+
+        <Link href="/nfts">
+          <Button w="sm" bg="button" my={10}>
+            New order
+          </Button>
+        </Link>
+      </VStack>
     </Flex>
   );
 };

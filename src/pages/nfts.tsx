@@ -55,6 +55,7 @@ const useAccount = (pubkey: web3.PublicKey) => {
 const NftPage = () => {
   // const [selectedNftUris, setUris] = useState<string[]>([]);
   const [selectedNftUri, setUri] = useState<string | undefined>();
+  const proceedDisabled = selectedNftUri === undefined;
   const { pubkey } = useDumbWallet();
 
   const { nfts } = useAccount(pubkey);
@@ -85,8 +86,8 @@ const NftPage = () => {
   // };
 
   return (
-    <Box p={4} flex={1} background="blue">
-      <Box background="green">
+    <Box p={4} flex={1}>
+      <Box>
         <NftList
           nftMetadata={nfts}
           // onNftSelected={ALLOWMULTIPLE___handleNftSelected}
@@ -103,14 +104,14 @@ const NftPage = () => {
         <SlabOptionsList selectedOptionName={undefined} />
       </Flex>
       <Flex
-        style={{ position: "absolute", bottom: 0, width: "100%" }}
-        background="orange"
+        style={{ position: "absolute", bottom: 0, width: "100%", padding: 38 }}
         justifyContent="flex-end"
       >
         <Button
           background={colors.borderSelected}
           color="black"
           onClick={navigateToOptions}
+          disabled={proceedDisabled}
         >
           View Proof {">"}
         </Button>
