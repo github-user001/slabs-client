@@ -59,6 +59,10 @@ const NftPage = () => {
 
   const { nfts } = useAccount(pubkey);
 
+  const selectedNftImage =
+    nfts?.find((n) => n.metadataUri === selectedNftUri)?.image ??
+    "/images/trippy.gif";
+
   const navigateToOptions = () => {
     Router.push({
       pathname: "/options",
@@ -93,13 +97,11 @@ const NftPage = () => {
           }}
         />
       </Box>
-
-      <SlabPreview image={"/images/trippy.gif"} />
+      <SlabPreview top={"19.2%"} left={"58.8%"} image={selectedNftImage} />
       <Box h={100} />
       <Flex justifyContent="center">
         <SlabOptionsList selectedOptionName={undefined} />
       </Flex>
-
       <Flex
         style={{ position: "absolute", bottom: 0, width: "100%" }}
         background="orange"
