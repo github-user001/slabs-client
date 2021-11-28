@@ -65,7 +65,7 @@ const NftPage = () => {
 
   const navigateToOptions = () => {
     Router.push({
-      pathname: "/options",
+      pathname: "/checkout",
       query: { nftMetadata: selectedNftUri },
     });
   };
